@@ -10,7 +10,7 @@ cmake -DCMAKE_TOOLCHAIN_FILE="C:/Program Files (x86)/SCE/Prospero/Tools/CMake/PS
     -DCMAKE_SYSTEM_NAME=Playstation ^
     -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ^
     -DPS_PLATFORM=1 ^
-	-DCMAKE_LINKER="C:/Program Files (x86)/SCE/Prospero SDKs/11.000/host_tools/bin/prospero-lld.exe" ^
+	-DCMAKE_LINKER="C:/Program Files (x86)/SCE/Prospero SDKs/12.000/host_tools/bin/prospero-lld.exe" ^
     ..
     
 popd

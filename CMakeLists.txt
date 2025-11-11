@@ -79,7 +79,7 @@ endif()
 
 set(SRC_FILES
         quickjs/cutils.c
-        quickjs/libbf.c
+        quickjs/dtoa.c
         quickjs/libregexp.c
         quickjs/libunicode.c
         quickjs/quickjs.c

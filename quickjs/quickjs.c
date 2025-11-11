@@ -3952,6 +3952,11 @@ static JSValue JS_ConcatString3(JSContext *ctx, const char *str1,
     return JS_EXCEPTION;
 }
 
+JSValue JS_NewString(JSContext *ctx, const char *str)
+{
+    return JS_NewStringLen(ctx, str, strlen(str));
+}
+
 JSValue JS_NewAtomString(JSContext *ctx, const char *str)
 {
     JSAtom atom = JS_NewAtom(ctx, str);

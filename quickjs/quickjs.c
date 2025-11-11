@@ -56231,11 +56231,11 @@ JSValue JS_NewMap(JSContext *ctx)
     init_list_head(&s->records);
     s->is_weak = FALSE;
     JS_SetOpaque(obj, s);
-    s->hash_size = 1;
-    s->hash_table = js_malloc(ctx, sizeof(s->hash_table[0]) * s->hash_size);
+    s->hash_bits = 1;
+    s->hash_size = 1U << s->hash_bits;
+    s->hash_table = js_mallocz(ctx, sizeof(s->hash_table[0]) * s->hash_size);
     if (!s->hash_table)
         goto fail;
-    init_list_head(&s->hash_table[0]);
     s->record_count_threshold = 4;
 
     return obj;
@@ -56326,11 +56326,11 @@ JSValue JS_NewSet(JSContext *ctx)
     init_list_head(&s->records);
     s->is_weak = FALSE;
     JS_SetOpaque(obj, s);
-    s->hash_size = 1;
-    s->hash_table = js_malloc(ctx, sizeof(s->hash_table[0]) * s->hash_size);
+    s->hash_bits = 1;
+    s->hash_size = 1U << s->hash_bits;
+    s->hash_table = js_mallocz(ctx, sizeof(s->hash_table[0]) * s->hash_size);
     if (!s->hash_table)
         goto fail;
-    init_list_head(&s->hash_table[0]);
     s->record_count_threshold = 4;
 
     return obj;

@@ -56437,7 +56437,14 @@ int JS_ReleaseLoadedModule(JSContext *ctx, const char* path)
         if (m->module_name == name) 
         {
             el->prev->next = el->next;
-            js_free_module_def(ctx, m);
+            /* warning: the module may be referenced elsewhere. It
+               could be simpler to use an array instead of a list for
+               'ctx->loaded_modules' */
+            list_del(&m->link);
+            m->link.prev = NULL;
+            m->link.next = NULL;
+            JS_FreeValue(ctx, JS_MKPTR(JS_TAG_MODULE, m));
+            
             JS_FreeAtom(ctx, name);
             return 1;
         }

@@ -1122,6 +1122,14 @@ public:
         return val_.IsEmpty();
     }
     
+	V8_INLINE bool operator==(const PersistentBase<T>& that) const {
+		return *val_ == *that.val_;
+	}
+
+	V8_INLINE bool operator!=(const PersistentBase<T>& that) const {
+		return !operator==(that);
+	}
+
     //PersistentBase(const PersistentBase& other) = delete;  // NOLINT
     //void operator=(const PersistentBase&) = delete;
     

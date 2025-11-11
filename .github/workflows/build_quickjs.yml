@@ -126,28 +126,28 @@ jobs:
   #       name: qjs_v8_bin-${{ github.job }}
   #       path: ~/qjs/**/*
         
-  build_linux:
-    name: Linux 
-    runs-on: ubuntu-20.04
-    steps:
-    - uses: actions/checkout@v3
-    - name: Install LibC++
-      run: |
-        sudo apt-get update
-        sudo apt-get install clang
-        sudo apt-get install build-essential
-        sudo apt-get install libc++-dev
-        sudo apt-get install libc++abi-dev
-    - name: Run build script
-      run: |
-        cd $GITHUB_WORKSPACE
-        chmod +x make_linux64.sh
-        ./make_linux64.sh
-        cp -r $GITHUB_WORKSPACE/qjs ~/
-    - uses: actions/upload-artifact@v4
-      with:
-        name: qjs_v8_bin-${{ github.job }}
-        path: ~/qjs/**/*
+  # build_linux:
+  #   name: Linux 
+  #   runs-on: ubuntu-20.04
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: Install LibC++
+  #     run: |
+  #       sudo apt-get update
+  #       sudo apt-get install clang
+  #       sudo apt-get install build-essential
+  #       sudo apt-get install libc++-dev
+  #       sudo apt-get install libc++abi-dev
+  #   - name: Run build script
+  #     run: |
+  #       cd $GITHUB_WORKSPACE
+  #       chmod +x make_linux64.sh
+  #       ./make_linux64.sh
+  #       cp -r $GITHUB_WORKSPACE/qjs ~/
+  #   - uses: actions/upload-artifact@v4
+  #     with:
+  #       name: qjs_v8_bin-${{ github.job }}
+  #       path: ~/qjs/**/*
         
   # build_wasm:
   #   name: wasm 

@@ -793,6 +793,7 @@ int JS_HasProperty(JSContext *ctx, JSValueConst this_obj, JSAtom prop);
 int JS_IsExtensible(JSContext *ctx, JSValueConst obj);
 int JS_PreventExtensions(JSContext *ctx, JSValueConst obj);
 int JS_DeleteProperty(JSContext *ctx, JSValueConst obj, JSAtom prop, int flags);
+int JS_DeletePropertyInt64(JSContext *ctx, JSValueConst obj, int64_t idx, int flags);
 int JS_SetPrototype(JSContext *ctx, JSValueConst obj, JSValueConst proto_val);
 JSValue JS_GetPrototype(JSContext *ctx, JSValueConst val);
 
@@ -1154,6 +1155,55 @@ void JS_PrintValueRT(JSRuntime *rt, JSPrintValueWrite *write_func, void *write_o
                      JSValueConst val, const JSPrintValueOptions *options);
 void JS_PrintValue(JSContext *ctx, JSPrintValueWrite *write_func, void *write_opaque,
                    JSValueConst val, const JSPrintValueOptions *options);
+
+/*-------begin fuctions for v8 api---------*/
+JSValue JS_NewFloat64_(JSContext *ctx, double d);
+JSValue JS_NewStringLen_(JSContext *ctx, const char *str1, size_t len1);
+JSValue JS_NewInt32_(JSContext *ctx, int32_t val);
+JSValue JS_NewUint32_(JSContext *ctx, uint32_t val);
+JSValue JS_True();
+JSValue JS_False();
+JSValue JS_Null();
+JSValue JS_Undefined();
+JSValue JS_Exception();
+JS_BOOL JS_IsArrayBuffer(JSValueConst obj);
+JS_BOOL JS_IsArrayBufferView(JSValueConst obj);
+JSValue JS_GetArrayBufferView(JSContext *ctx, JSValueConst obj);
+JS_BOOL JS_GetArrayBufferViewInfo(JSContext *ctx, JSValueConst obj,
+                                  size_t *pbyte_offset,
+                                  size_t *pbyte_length,
+                                  size_t *pbytes_per_element);
+JS_BOOL JS_IsDate(JSValueConst obj);
+double JS_GetDate(JSContext *ctx, JSValueConst obj);
+JSValue JS_NewDate(JSContext *ctx, double d);
+JS_BOOL JS_IsRegExp(JSValueConst obj);
+JSValue JS_GetOwnPropertyNamesAsArray(JSContext *ctx, JSValueConst obj);
+
+JSValue JS_NewMap(JSContext *ctx);
+JSValue JS_MapSet(JSContext *ctx, JSValueConst this_val,
+                  JSValueConst key, JSValueConst value);
+JSValue JS_MapGet(JSContext *ctx, JSValueConst this_val,
+                  JSValueConst key);
+JSValue JS_MapDelete(JSContext *ctx, JSValueConst this_val,
+                  JSValueConst key);
+
+void JS_MapClear(JSContext *ctx, JSValueConst this_val);
+JSValue JS_NewSet(JSContext *ctx);
+JSValue JS_SetAdd(JSContext *ctx, JSValueConst this_val,
+                  JSValueConst key);
+JSValue JS_SetHas(JSContext *ctx, JSValueConst this_val,
+                  JSValueConst key);
+JSValue JS_SetDelete(JSContext *ctx, JSValueConst this_val,
+                  JSValueConst key);
+
+void JS_SetClear(JSContext *ctx, JSValueConst this_val);
+JSValue JS_DupModule(JSContext *ctx, JSModuleDef* v);
+
+char *JS_DefaultModuleNameNormalize(JSContext *ctx, const char *base_name, const char *name);
+
+/*-------end fuctions for v8 api---------*/
+JSValue JS_GET_MODULE_NS(JSContext *ctx, JSModuleDef* v);
+int JS_ReleaseLoadedModule(JSContext *ctx, const char* path);
 
 #undef js_unlikely
 #undef js_force_inline

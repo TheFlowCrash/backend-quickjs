@@ -90,7 +90,7 @@ endif()
 
 file(STRINGS "quickjs/_VERSION" QJS_VERSION_STR)
 
-set (CMAKE_CXX_STANDARD 14)
+set (CMAKE_CXX_STANDARD 20)
 
 include_directories(
     include

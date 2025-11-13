@@ -90,8 +90,11 @@ endif()
 
 file(STRINGS "quickjs/_VERSION" QJS_VERSION_STR)
 
-set (CMAKE_CXX_STANDARD 20)
-set(CMAKE_C_STANDARD 99)
+if (PS_PLATFORM)
+    set (CMAKE_CXX_STANDARD 17)
+else()
+    set (CMAKE_CXX_STANDARD 20)
+endif()
 
 include_directories(
     include
